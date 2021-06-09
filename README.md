@@ -4,6 +4,8 @@ Banano For Your Information - Store data in Banano addresses.
 ## Goal
 To store data in wallets, link it to a block (e.g. a send block), automatically detect and parse the data.
 
+At the moment you can only encode and decode data in Banano addresses.
+
 ## Limitations
 The upper limit for storage is 8216 bytes for the data encoded in msgpack. A 8216 byte msgpack would be encoded in 257 addresses.
 
