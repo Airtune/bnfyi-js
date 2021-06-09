@@ -1,12 +1,15 @@
 # bnfyi-js
-Banano For Your Information - Store data in blocks on Banano.
+Banano For Your Information - Store data in Banano addresses.
+
+## Goal
+To store data in wallets, link it to a block (e.g. a send block), automatically detect and parse the data.
 
 ## Limitations
-The largest amount of addresses supported to store data in is 257 addresses, leaving you with an upper limit of 8216 bytes for your data.
+The upper limit for storage is 8216 bytes for the data encoded in msgpack. A 8216 byte msgpack would be encoded in 257 addresses.
 
-## Examples of encoding data to addresses
+## Examples of encoding data in addresses
 ### Encode short data
-Encoding data that take up less 25 bytes will only take up a single address.
+Encoding data that take up less than 25 bytes will only take up a single address.
 
 ```
 const bnfyi = require('bnfyi');
