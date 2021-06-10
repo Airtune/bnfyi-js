@@ -21,7 +21,7 @@ const MULTI_ADDR_HEADER_LENGTH  = MULTI_ADDR_HEADER.length;
 const MULTI_HEX_START           = MULTI_HEX_HEADER.length + 2;
 const MULTI_HEX_END             = 64;
 
-decodeObjectFromAddresses = (addresses) => {
+decodeFromAddresses = (addresses) => {
   let hexObject;
   const address = addresses[0];
 
@@ -79,6 +79,6 @@ decodeObjectFromHex = (objectHex) => {
 }
 
 module.exports = {
-  decodeObjectFromAddresses: decodeObjectFromAddresses,
+  decodeFromAddresses: decodeFromAddresses,
   decodeObjectFromHex: decodeObjectFromHex
 }

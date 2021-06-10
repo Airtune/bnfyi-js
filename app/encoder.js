@@ -12,7 +12,7 @@ const MULTI_HEADER_BYTESIZE = constants.MULTI_HEADER_BYTESIZE;
 const MULTI_MIN_BYTESIZE = constants.MULTI_MIN_BYTESIZE;
 const MULTI_MAX_BYTESIZE = constants.MULTI_MAX_BYTESIZE;
 
-const encodeObjectInAddresses = (object) => {
+const encodeInAddresses = (object) => {
   let hexKeys = encodeObjectInPublicKeys(object);
   let addresses = hexKeys.map(bananojs.getBananoAccount);
 
@@ -79,6 +79,6 @@ const hexToPublicKeys = (hex) => {
 }
 
 module.exports = {
-  encodeObjectInAddresses: encodeObjectInAddresses,
+  encodeInAddresses: encodeInAddresses,
   encodeObjectInPublicKeys: encodeObjectInPublicKeys
 };
