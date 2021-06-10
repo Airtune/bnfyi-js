@@ -7,7 +7,7 @@ To store data in wallets, link it to a block (e.g. a send block), automatically 
 At the moment you can only encode and decode data in Banano addresses.
 
 ## Limitations
-The upper limit for storage is 8216 bytes for the data encoded in msgpack. A 8216 byte msgpack would be encoded in 257 addresses.
+The upper limit for storage is 8216 bytes for the data encoded in msgpack. An 8216 byte msgpack would be encoded in 257 addresses.
 
 ## Examples of encoding data in addresses
 ### Encode short data
