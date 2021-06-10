@@ -29,7 +29,7 @@ const encodeObjectInHex = (object) => {
   const objectByteSize = Math.ceil(objectHex.length / 2.0);
 
   if (typeof(objectByteSize) != "number") {
-    throw `Unexpected objectByteSize type. Expected type "number", got: ${typeof(objectByteSize)}`;
+    throw TypeError(`Unexpected objectByteSize type. Expected type "number", got: ${typeof(objectByteSize)}`);
   }
 
   if (objectByteSize >= SINGLE_MIN_BYTESIZE && objectByteSize <= SINGLE_MAX_BYTESIZE) {
@@ -47,11 +47,11 @@ const encodeObjectInHex = (object) => {
         MULTI_HEX_HEADER + extraBlockCountHex + objectHex
       );
     } else {
-      throw `Unexpected extraBlockCount out of range. Expected to be between 0 and 255, got: ${extraBlockCount}`;
+      throw RangeError(`Unexpected extraBlockCount out of range. Expected to be between 0 and 255, got: ${extraBlockCount}`);
     }
   }
 
-  throw `Unexpected objectByteSize: ${objectByteSize}`;
+  throw Error(`Unexpected objectByteSize: ${objectByteSize}`);
 };
 
 const padHex = (hex) => {

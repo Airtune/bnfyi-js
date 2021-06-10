@@ -34,19 +34,19 @@ const MULTI_HEX_COUNT_START = MULTI_HEX_HEADER.length;
 const MULTI_HEX_COUNT_END   = MULTI_HEX_COUNT_START + 2;
 
 if (SINGLE_HEADER_BYTESIZE > 31) {
-  throw `SINGLE_HEX_HEADER header can't be larger than 31 bytes, got size: ${SINGLE_HEADER_BYTESIZE}`;
+  throw RangeError(`SINGLE_HEX_HEADER header can't be larger than 31 bytes, got size: ${SINGLE_HEADER_BYTESIZE}`);
 }
 
 if (SINGLE_HEADER_BYTESIZE < 3) {
-  throw `SINGLE_HEADER_BYTESIZE too small (< 3), got size: ${SINGLE_HEADER_BYTESIZE}`;
+  throw RangeError(`SINGLE_HEADER_BYTESIZE too small (< 3), got size: ${SINGLE_HEADER_BYTESIZE}`);
 }
 
 if (MULTI_HEADER_BYTESIZE > 32) {
-  throw `MULTI_HEADER_BYTESIZE can't be larger than 32 bytes, got size: ${MULTIMULTI_HEADER_BYTESIZE_HEADER_BYTESIZE}`;
+  throw RangeError(`MULTI_HEADER_BYTESIZE can't be larger than 32 bytes, got size: ${MULTIMULTI_HEADER_BYTESIZE_HEADER_BYTESIZE}`);
 }
 
 if (MULTI_HEADER_BYTESIZE < 4) {
-  throw `MULTI_HEADER_BYTESIZE too small (< 4), got size: ${MULTI_HEADER_BYTESIZE}`;
+  throw RangeError(`MULTI_HEADER_BYTESIZE too small (< 4), got size: ${MULTI_HEADER_BYTESIZE}`);
 }
 
 module.exports = {

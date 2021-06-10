@@ -30,7 +30,7 @@ decodeFromAddresses = (addresses) => {
   } else if (address.substr(0, MULTI_ADDR_HEADER_LENGTH) == MULTI_ADDR_HEADER) {
     hexObject = multiHeaderAddressesToHex(addresses);
   } else {
-    throw `unexpected address: ${address}`;
+    throw Error(`unexpected address: ${address}`);
   }
 
   return decodeObjectFromHex(hexObject);
@@ -47,7 +47,7 @@ multiHeaderAddressesToHex = (addresses) =>{
   const header = headerAddress.substr(0, MULTI_ADDR_HEADER_LENGTH);
   
   if (header != MULTI_ADDR_HEADER) {
-    throw `Unexpected header. Expected '${MULTI_ADDR_HEADER}', got: '${headerAddress}'`;
+    throw Error(`Unexpected header. Expected '${MULTI_ADDR_HEADER}', got: '${headerAddress}'`);
   }
 
   const headerPublicKey = bananojs.getAccountPublicKey(headerAddress);
@@ -57,7 +57,7 @@ multiHeaderAddressesToHex = (addresses) =>{
   const fyiAddressCount = 2 + extraCount;
 
   if (addresses.length < fyiAddressCount) {
-    throw `Didn't get enough addresses in multiHeaderAddressesToHex. Header specify a total of ${fyiAddressCount} addresses, got: ${addresses.length}`;
+    throw Error(`Didn't get enough addresses in multiHeaderAddressesToHex. Header specify a total of ${fyiAddressCount} addresses, got: ${addresses.length}`);
   }
 
   hex += headerPublicKey.substring(MULTI_HEX_START, MULTI_HEX_END);
