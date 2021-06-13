@@ -16,8 +16,8 @@ Encoding data that take up less than 25 bytes will only take up a single address
 ```
 const bnfyi = require('bnfyi');
 
-let shortData = { note: "wen poem bread" };
-let shortDataInAddresses = bnfyi.encodeInAddresses(shortData);
+const shortData = { note: "wen poem bread" };
+const shortDataInAddresses = bnfyi.encodeInAddresses(shortData);
 ```
 
 The resulting value of `shortDataInAddresses` from the example above will be:
@@ -27,14 +27,14 @@ The resulting value of `shortDataInAddresses` from the example above will be:
 
 To decode `shortDataInAddresses` again:
 ```
-let decodedShortData = bnfyi.decodeFromAddresses(shortDataInAddresses);
+const decodedShortData = bnfyi.decodeFromAddresses(shortDataInAddresses));
 ```
 The resulting value of `decodedShortData` will be the same as `shortData`.
 
 
 ### Encode longer data
 ```
-let longData = {
+const longData = {
   note: "Lament of Anemone\n" + 
         "After seeing what there is to see\n" +
         "After reposting every meme\n" +
@@ -47,7 +47,7 @@ let longData = {
         "\n" +
         "Omniscient sonder of Anemone"
 };
-let longDataInAddresses = bnfyi.encodeInAddresses(longData);
+const longDataInAddresses = bnfyi.encodeInAddresses(longData);
 ```
 
 The resulting value of `longDataInAddresses` from the example above will be:
@@ -65,6 +65,6 @@ The resulting value of `longDataInAddresses` from the example above will be:
 
 To decode `longDataInAddresses` again:
 ```
-let decodedLongData = bnfyi.decodeFromAddresses(longDataInAddresses);
+const decodedLongData = bnfyi.decodeFromAddresses(longDataInAddresses);
 ```
 The resulting value of `decodedLongData` from the example above will be the same as the value of `longData`.

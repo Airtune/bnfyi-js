@@ -1,5 +1,5 @@
-const encoder = require('./app/encoder');
-const decoder = require('./app/decoder');
+const encoder = require('./encoder');
+const decoder = require('./decoder');
 
 module.exports = {
   encodeInAddresses: encoder.encodeInAddresses,
