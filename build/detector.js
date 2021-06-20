@@ -48,13 +48,13 @@ function matchMultiAddressHeader(address) {
     return address.substr(0, constants_1.MULTI_ADDR_HEADER.length) == constants_1.MULTI_ADDR_HEADER;
 }
 exports.matchMultiAddressHeader = matchMultiAddressHeader;
-function decodeFromSend(account, blockHash, lookbackBlockHeight) {
+function decodeFromSend(sendingAccount, blockHash, lookbackBlockHeight) {
     if (lookbackBlockHeight === void 0) { lookbackBlockHeight = 257; }
     return __awaiter(this, void 0, void 0, function () {
         var accountHistory;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, bananojs.getAccountHistory(account, lookbackBlockHeight, blockHash, true)];
+                case 0: return [4 /*yield*/, bananojs.getAccountHistory(sendingAccount, lookbackBlockHeight, blockHash, true)];
                 case 1:
                     accountHistory = _a.sent();
                     return [2 /*return*/, decodeFromAccountHistory(accountHistory, blockHash)];
@@ -69,11 +69,12 @@ function decodeFromReceive(receiveLink, lookbackBlockHeight) {
         var blocks, sendBlock, accountHistory;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0:
-                    blocks = bananojs.bananodeApi.getBlocks([receiveLink], "true");
-                    sendBlock = blocks[receiveLink];
-                    return [4 /*yield*/, bananojs.getAccountHistory(sendBlock.account, lookbackBlockHeight, receiveLink, true)];
+                case 0: return [4 /*yield*/, bananojs.bananodeApi.getBlocks([receiveLink], "true")];
                 case 1:
+                    blocks = _a.sent();
+                    sendBlock = blocks.blocks[receiveLink];
+                    return [4 /*yield*/, bananojs.getAccountHistory(sendBlock.account, lookbackBlockHeight, receiveLink, true)];
+                case 2:
                     accountHistory = _a.sent();
                     return [2 /*return*/, decodeFromAccountHistory(accountHistory, receiveLink)];
             }
@@ -82,18 +83,19 @@ function decodeFromReceive(receiveLink, lookbackBlockHeight) {
 }
 exports.decodeFromReceive = decodeFromReceive;
 function decodeFromAccountHistory(accountHistory, blockHash) {
+    var addresses = [];
     for (var i in accountHistory.history) {
         var line = accountHistory.history[i];
         if (line.hash != blockHash && line.subtype !== 'change') {
             break;
         }
         var address = line.representative;
+        addresses.push(address);
         if (matchSingleAddressHeader(address)) {
             return decoder.decodeFromSingleHeaderAddress(address);
         }
         else if (matchMultiAddressHeader(address)) {
-            var addresses = accountHistory.history.slice(i).reverse().map(function (block) { block.representative; });
-            return decoder.decodeFromMultiHeaderAddresses(addresses);
+            return decoder.decodeFromMultiHeaderAddresses(addresses.reverse());
         }
     }
     return false;
