@@ -13,8 +13,8 @@ export function matchMultiAddressHeader(address: string): boolean {
   return address.substr(0, MULTI_ADDR_HEADER.length) == MULTI_ADDR_HEADER;
 }
 
-export async function decodeFromSend(account:string, blockHash: string, lookbackBlockHeight: number = 257) {
-  const accountHistory = await bananojs.getAccountHistory(account, lookbackBlockHeight, blockHash, true);
+export async function decodeFromSend(sendingAccount:string, blockHash: string, lookbackBlockHeight: number = 257) {
+  const accountHistory = await bananojs.getAccountHistory(sendingAccount, lookbackBlockHeight, blockHash, true);
 
   return decodeFromAccountHistory(accountHistory, blockHash);
 }
